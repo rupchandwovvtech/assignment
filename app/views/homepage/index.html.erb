@@ -1,0 +1,30 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Questions and Answers:</h1>
+
+<table>
+  <thead>
+  	<% @questions.each do |question| %>
+    <tr>
+      <th><%= question.title %></th>
+    </tr>
+    <tbody>
+      <%question.user_answers do |ans|%>		
+      <tr>
+        <th><%= ans.answer %></th>
+      </tr>
+      <%end%>
+      <%form_tag({:controller => 'homepage', :action => 'create_user_answer'},:id=>'filter_form',:remote=>true) do%>
+      <%= text_area :answer %>	
+      <%= submit_tag 'Save', :name => 'commit'%>	
+      <%end%>
+  	</tbody>
+    <%end%>
+  </thead>
+
+  
+</table>
+
+<br>
